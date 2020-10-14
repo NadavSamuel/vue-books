@@ -10,7 +10,7 @@
            <li :class="priceClass">Price:{{formatPrice}}</li>
          </ul>
          <LongText :text="book.description" :class="{shortText:shortText}" @toggleShortText="toggleShortText"/>
-         <button @click="toggleEditModal"> Edit</button>
+         <!-- <button @click="toggleEditModal"> Edit</button> -->
          <reviews @updateReviews="onAddReview" @onDeleteReview="onDeleteReview" :bookReviews="book.reviews"/>
       </article>
   <!-- <edit-modal v-if="isEditModal" :book="book" @toggleEditModal="toggleEditModal" /> -->
