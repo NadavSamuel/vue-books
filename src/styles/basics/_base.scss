@@ -1,0 +1,51 @@
+* {
+    box-sizing: border-box;
+}
+
+// ::selection {
+//     background-color: $clr1;
+//     color: $clr6;
+// }
+
+html {
+    font-family: caveat;
+}
+
+body {
+    font-size: rem(18px);
+    margin: 0;
+    background-image: url("~@/assets/hero.jpg"); /* The image used */
+    // background-color: #cccccc; /* Used if the image is unavailable */
+    // height: 500px; /* You must set a specified height */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; /* Resize the background image to cover the entire container */
+    object-fit: cover;
+    background-attachment: fixed;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    // font-family: caveat;
+    margin: 0;
+    
+}
+
+img {
+    width: 100%;
+}
+input,textarea{
+    border: none;
+    border-bottom: 1px solid black;
+    padding: 5px 10px;
+    outline: none;
+    background-color: #9e9e9e29;
+    transition: background-color 0.3s;
+    &:focus{
+        background-color:white
+    }
+}
+
+// p {
+//     margin: 0 0 1em;
+//     max-width: 40ch;
+// }

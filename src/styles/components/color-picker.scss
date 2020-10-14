@@ -1,0 +1,8 @@
+.color-picker{
+    ul{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+    grid-gap: 20px;
+    margin: 0 20px;
+    }
+}

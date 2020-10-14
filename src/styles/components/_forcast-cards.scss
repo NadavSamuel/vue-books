@@ -1,0 +1,22 @@
+.forcast-container{
+    height: 330px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+        .forcast-list{
+        padding: 0;
+        list-style: none;
+        display: grid;
+        grid-template-columns: repeat(5, minmax(130px, 1fr));
+        margin: 0 50px;
+
+        grid-gap: 20px;
+        .forcast-card{
+            text-align: center;
+            h2{
+                font-size: 1.3rem;
+            }
+        }
+    
+    }
+}

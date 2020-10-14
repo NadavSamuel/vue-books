@@ -1,0 +1,27 @@
+.book-details-container{
+    height: 100vh;
+    .book-details{
+        .details-container{
+        }
+        .details{
+
+        }
+    }
+}
+
+.reviews{
+    width: 100%;
+    .add-review{
+        width: 75%;
+        form >*{
+            width: 100%;
+        }
+        form textarea{
+            height: 300px;
+        }
+        form button{
+            width:25%;
+            align-self: flex-start;
+        }
+    }
+}

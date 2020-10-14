@@ -1,0 +1,16 @@
+.user-msg{
+    position: fixed;
+    padding: 10px;
+    top: 60px;
+    left: 33%;
+    /* right: 99%; */
+    background-color: white;
+    z-index: 999;
+    width: 35%;
+}
+.success{
+    background: lightgreen;
+}
+.faliure{
+    background: rgb(235, 123, 123);
+}

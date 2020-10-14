@@ -1,0 +1,11 @@
+button{
+    background-color: inherit;
+    border: 1px solid;
+    cursor: pointer;
+    padding: 10px;
+    transition: background-color 0.3s;
+    &:hover{
+    background-color: white;
+
+    }
+}
