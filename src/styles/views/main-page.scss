@@ -1,0 +1,25 @@
+.book-app{
+    .hero{
+        padding-bottom:30px ;
+        h1,h2{
+            text-align: center;
+        }
+        h1{
+            font-size: 3.2rem;
+            color: $clr1;
+        }
+        img{
+            max-width: 270px;
+        }
+    }
+    .featured-books-wrapper{
+        border-radius: $thumbnail-border-radius;
+        background-color: $clr1;
+        padding: 30px;
+        margin: 30px 0;
+        color: white;
+        h2{
+            text-align: start;
+        }
+    }
+}

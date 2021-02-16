@@ -1,9 +1,12 @@
 
-
+import userService from '@/services/userService'
+import { whishlistService } from '../../services/whishlistService';
 
 export default {
     state: {
         pickedColor: null,
+        currUser: userService.checkExistingUser(),
+        whishlist: null
     },
     getters: {
         pickedColor(state) {
@@ -14,38 +17,54 @@ export default {
         setPickedColor(state, { pickedColor }) {
             state.pickedColor = pickedColor
         },
+        setCurrUser(state, { currUser }) {
+            state.currUser = currUser
+        },
+        setWhishlist(state, { whishlist }) {
+            state.whishlist = whishlist
+        },
         removeBook(state, { id }) {
             const idx = state.books.findIndex(book => book.id === id)
             state.books.splice(idx, 1)
         },
-        saveBook(state, { book }) {
-            const idx = state.books.findIndex(currBook => book.id === currBook.id)
-            if (idx === -1) {
-                state.books.push(book)
-            }
-            else state.books.splice(idx, 1, book)
-        },
-        setBooksFilterBy(state, { filterBy }) {
-            state.booksFilterBy = filterBy
-        }
     },
     actions: {
-        async setPickedColor(context,{pickedColor}) {
-            // const books = await bookService.query()
-            context.commit({ type: 'setPickedColor', pickedColor })
+        async setPickedColor(context, { pickedColor }) {
+            context.commit({ type: 'setPickedColor', pickedColor });
         },
-        // async removeBook({ commit }, { id }) {
-        //     await bookService.remove(id)
-        //     commit({ type: 'removeBook', id })
-        // },
-        // async saveBook({ commit }, { book }) {
-        //     const savedBook = await bookService.save(book)
-        //     commit({ type: 'saveBook', book: savedBook })
-        //     return savedBook
-        // },
-        // async getBeer(context, { id }) {
-        //     return id ? await beerService.get(id) : beerService.getEmptyBeer()
-        // }
+        async signUser(context, { newUser }) {
+            const userToSign = await userService.signup(newUser);
+            context.commit({ type: 'setCurrUser', currUser: userToSign });
+        },
+        async onLogin({commit,dispatch}, { user }) {
+            const currUser = await userService.login(user);
+            commit({ type: 'setCurrUser', currUser });
+            dispatch('getUserWhishlist');
+        },
+        getSigndUser({commit,dispatch}){
+            const currUser = userService.checkExistingUser();
+            commit({ type: 'setCurrUser', currUser });
+        },
+        async getUserWhishlist({state,commit}){
+            const whishlist = await whishlistService.getWhishlist(state.currUser._id);
+            commit({ type: 'setWhishlist', whishlist });
+        },
+        async getUserBooks({state,commit}){
+            const whishlist = await whishlistService.getUserBooks(state.currUser._id);
+            commit({ type: 'setWhishlist', whishlist });
+        },
+        async onRemoveWhishlist({commit}){
+            commit({ type: 'setWhishlist', whishlist:null });
+        },
+        async onLogout({commit,dispatch}) {
+            await userService.logout()
+            commit({ type: 'setCurrUser', currUser: null });
+            dispatch('onRemoveWhishlist');
+        },
+        async onUpdateWhishList({commit,state}, { whishlist }) {
+            const updatedWhishlist = await whishlistService.update(whishlist,state.currUser._id);
+            commit({ type: 'setWhishlist', whishlist: updatedWhishlist });
+        },
     },
     modules: {}
 }

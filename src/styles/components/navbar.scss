@@ -1,0 +1,152 @@
+nav {
+    background-color: $clr3;
+    width: 100%;
+    height: 15vh;
+    padding: 0 10px;
+    margin-bottom: 30px;
+    display: flex !important;
+    align-items: center;
+    .navbar-container {
+        height: 100px;
+        justify-content: space-between;
+        width: 100%;
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            width: 100%;
+
+            .phone-view {
+                display: none;
+            }
+            .logo {
+                width: 40px;
+                object-fit: cover;
+            }
+            .main-nav-container {
+                display: flex;
+                align-items: center;
+                width: 100%;
+            }
+            a,
+            h2 {
+                text-decoration: none;
+                margin: 0;
+            }
+            ul {
+                display: inline-flex;
+                .user-greet {
+                    margin-inline-start: auto;
+                    margin-inline-end: 20px;
+                    .user-greet-info {
+                        min-width: 150px;
+                        p {
+                            margin: 0;
+                        }
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                    }
+                }
+                .popup {
+                    position: absolute;
+                    top: 40px !important;
+                    right: 20px !important;
+                }
+
+                a {
+                    border-radius: 15px;
+                    color: black;
+                    margin: 5px;
+                    height: 70px;
+                    width: 70px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    min-width: 100px;
+                    font-weight: bold;
+                    color: $clr1;
+                    font-size: 1rem;
+
+                    &:hover {
+                        background: $clr2;
+                        color: $clr1;
+                        transition: 0.3s;
+                    }
+                }
+            }
+        }
+    }
+    .mobile-links > * {
+        border-radius: 0;
+    }
+}
+
+@media (max-width: $narrow-breakpoint) {
+    nav {
+        .navbar-container {
+            .nav-links {
+                justify-content: space-between;
+                ul {
+                    .popup {
+                        width: 20vw;
+                        height: 15vh;
+                    }
+                }
+
+                .phone-view {
+                    display: inline-block;
+                    margin-right: 10px;
+                    font-size: rem(40px);
+                    cursor: pointer;
+                    color: $clr3;
+                    &:hover {
+                        color: $clr2;
+                        transition: 0.3s;
+                    }
+                }
+
+                .main-nav-container {
+                    .user-greet {
+                        margin-inline-start: 0;
+                        margin-inline-end: 0;
+                        order: -1;
+                        margin-bottom: 15px;
+                        .user-greet-info {
+                            height: 75px;
+                            flex-direction: column;
+                        }
+                    }
+
+                    a {
+                        margin-top: 10px;
+                        margin: 0 auto;
+                        width: 70px;
+                        height: 50px;
+                        color: $clr1;
+                        border-radius: 0;
+                        &:hover {
+                            background: inherit;
+                        }
+                    }
+                    z-index: 16;
+                    display: flex;
+                    width: 150px;
+                    flex-direction: column;
+                    position: fixed;
+                    right: 0;
+                    top: 0;
+                    height: 100%;
+                    background-color: $clr3;
+                    transition: 0.3s;
+                    margin-inline-end: 0;
+                    padding: 20px 0 0 0;
+                    transition: transform 0.8s, box-shadow 0.8s;
+                    &.hide {
+                        transform: translateX(100%);
+                    }
+                }
+            }
+        }
+    }
+}

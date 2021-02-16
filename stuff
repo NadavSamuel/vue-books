@@ -1,0 +1,23 @@
+// export default {
+//   name: 'UserProfile',
+//   date() {
+//     return {
+//       favColor: null,
+//     };
+//   },
+//   computed: {
+//     userColor() {
+//       const pickedColor = this.$store.getters.pickedColor;
+//       return pickedColor;
+//     },
+//   },
+//   components: {
+//     ColorPicker,
+//   },
+//   methods: {
+//     setFavoriteColor(pickedColor) {
+//       this.$store.dispatch({ type: 'setPickedColor', pickedColor });
+//     },
+//   },
+// };
+// </script>

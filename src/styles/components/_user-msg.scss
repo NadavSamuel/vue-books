@@ -3,14 +3,14 @@
     padding: 10px;
     top: 60px;
     left: 33%;
-    /* right: 99%; */
     background-color: white;
     z-index: 999;
     width: 35%;
 }
 .success{
-    background: lightgreen;
+    background: $clr1;
 }
 .faliure{
-    background: rgb(235, 123, 123);
+    background: $faliure-clr;
+    color:white;
 }

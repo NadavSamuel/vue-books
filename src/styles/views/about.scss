@@ -1,0 +1,52 @@
+$bg: #0baad4;
+
+$hover: darken($bg, 10%);
+
+.about-page {
+    .about {
+        > *:not(:last-child) {
+            margin-bottom: 30px;
+        }
+        img {
+            max-width: 370px;
+            border-radius: 50%;
+        }
+        p {
+            font-size: 1.6rem;
+            padding: 20px;
+            span {
+                color: $clr1;
+                font-weight: 700;
+            }
+        }
+        .links-container {
+            width: 80%;
+            align-items: self-end;
+            > * {
+                margin: 10px 0;
+            }
+            text-align: start;
+            font-size: 1.5rem;
+            a {
+                position: relative;
+                text-decoration: none;
+                line-height: 24px;
+                padding-top: 10px;
+                &:before {
+                    content: "";
+                    position: absolute;
+                    transition: transform 0.5s ease;
+                    left: 0;
+                    bottom: 0;
+                    width: 100%;
+                    height: 2px;
+                    background: $hover;
+                    transform: scaleX(0);
+                }
+                &:hover:before {
+                    transform: scaleX(1);
+                }
+            }
+        }
+    }
+}

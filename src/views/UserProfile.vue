@@ -1,44 +1,52 @@
 <template>
-<section class="user-profile main-container" >
-    <h1 v-bind:style="{ color: userColor }">User Profile</h1>
-    <color-picker @setFavoriteColor="setFavoriteColor"/>
-
-</section>
-  
+  <section class="user-profile main-container">
+    <router-view></router-view>
+  </section>
 </template>
-
 <script>
-import ColorPicker from "@/cmps/ColorPicker";
+import Signup from '@/cmps/Signup.vue';
+import Login from '../cmps/Login.vue';
+import { mixins } from '../services/mixins';
+
 export default {
-    name:'UserProfile',
-    date(){
-        return{
-            favColor:null
-        }
+  methods: {
+    getRightRoute() {
+      if (!this.$store.state.userProfile.currUser) this.$router.push('/userProfile/login');
+      else this.$router.push('/userProfile/user-page');
     },
-    computed:{
-        userColor(){
-        const pickedColor = this.$store.getters.pickedColor;
-        return pickedColor;
-
-        }
-
+  },
+  created() {
+    mixins.scrollToTop();
+    this.getRightRoute();
+  },
+  watch: {
+    $route(to) {
+      if (to.fullPath === '/userProfile') this.getRightRoute();
     },
-    components:{
-        ColorPicker
-    },
-    methods:{
-       setFavoriteColor(pickedColor){
-       this.$store.dispatch({ type: 'setPickedColor',pickedColor} )
-            // this.favColor = favoriteColor
-            // console.log('favColor is :',this.favColor)
-
-        }
-    }
-
-}
+  },
+  components: {
+    Signup,
+    Login,
+  },
+};
 </script>
 
-<style>
 
-</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

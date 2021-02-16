@@ -1,0 +1,52 @@
+.book-filter{
+    width: 500px;
+    justify-self: center;
+    .search-txt-input{
+        width: 100%;
+        height: 40px;
+        padding: 20px;
+    }
+    .additional-filters{
+        margin-top: 20px;
+        justify-content: space-between;
+        .auth-and-sale{
+            input{
+                margin: 10px 0;
+            }
+            .additional-input{
+                height: 30%;
+            }
+            .checkbox{
+                width:30px;
+                height: 30px;
+                cursor: pointer;
+                border-radius:$thumbnail-border-radius ;
+            }
+
+        }
+    }
+}
+
+@media(max-width:$narrow-breakpoint){
+    .book-filter{
+        width: unset;
+        .search-txt-input{
+            width: 300px;
+        }
+        .additional-filters{
+            flex-direction: column-reverse;
+            align-items: center;
+            >*{
+                margin: 10px 0;
+            }
+        }
+    }
+}
+@media(max-width:$mobile-breakpoint){
+    .book-filter{
+        .search-txt-input{
+            width: 200px;
+        }
+
+    }
+}

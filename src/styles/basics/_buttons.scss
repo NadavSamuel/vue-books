@@ -1,11 +1,16 @@
 button{
     background-color: inherit;
     border: 1px solid;
+    border-radius: 5px;
+    font-size: 1.3rem;
+    background-color: $clr3;
+    transition: 0.3s;
     cursor: pointer;
     padding: 10px;
     transition: background-color 0.3s;
+    outline: none;
     &:hover{
-    background-color: white;
+        background-color: $clr2;
+    }  
 
-    }
 }

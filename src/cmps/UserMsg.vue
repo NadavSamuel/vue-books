@@ -1,7 +1,14 @@
 <template>
-  <section :class ="tpyeClass" class="user-msg" v-if="uMsg">
+  <section :class="tpyeClass" class="user-msg" v-if="uMsg">
     <p>{{ uMsg.msg }}</p>
-    <p v-if="uMsg.bookId"><router-link :to="`/book/${uMsg.bookId}`">Go to book page </router-link></p>
+    <p v-if="uMsg.bookId">
+      <router-link :to="`/book/${uMsg.bookId}`">Go to book page </router-link>
+    </p>
+    <ul class="clean-list" v-if="uMsg.requiered">
+      <li v-for="req in uMsg.requiered" :key="req">
+        <span>{{ req }}</span>
+      </li>
+    </ul>
   </section>
 </template>
 
@@ -13,11 +20,15 @@ export default {
     };
   },
   updated() {
+    clearTimeout(this.clreaneceTimeout);
     if (this.$store.getters.msgToShow) {
-      setTimeout(() => {
+      this.clreaneceTimeout =setTimeout(() => {
         this.$store.dispatch({ type: 'clearMsg' });
-      },2500);
+      }, 4000);
     }
+  },
+  destroyed(){
+    clearTimeout(this.clreaneceTimeout);
   },
   computed: {
     msgToShow() {
@@ -33,6 +44,5 @@ export default {
       return this.uMsg.type === 'success' ? 'success' : 'faliure';
     },
   },
- 
 };
 </script>

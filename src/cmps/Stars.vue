@@ -1,10 +1,12 @@
 <template>
-  <div class="stars" :class="cursorPointer" v-if="rate">
-    <span v-for="n in 5" :key="n" @click = onChangeRate(n)>{{(n <= stars) ?  '&#x2605;' : '&#x2606;' }}</span>
+  <div class="stars flex justify-center" :class="cursorPointer" v-if="rate">
+    <img v-for="n in 5" :key="n" @click = onChangeRate(n) :src="(n <= stars) ?  fullStar : blankStar" />
   </div>
 </template>
 
 <script>
+import BlankStar from '../cmps/BlankStar.vue';
+
 export default {
   name:'Stars',
   props: ['rate','isReadyReview'],
@@ -12,8 +14,6 @@ export default {
     return {
       stars: null,
       maxRate: 5,
-      fullStar: '&#x2605',
-      blankStar: '&#x2605',
     };
   },
   created() {
@@ -22,6 +22,12 @@ export default {
   computed:{
       cursorPointer(){
           if(!this.isReadyReview) return 'cursor-pointer'
+      },
+      fullStar(){
+          return  require('@/assets/imgs/star-solid.svg')
+      },
+      blankStar(){
+          return  require('@/assets/imgs/star-regular.svg')
       }
   },
   methods:{
@@ -35,10 +41,16 @@ export default {
       stars(newVal,oldVal){
       this.$emit('changeRate',newVal)
     }
+  },
+  components:{
+    BlankStar
   }
 
 };
 </script>
 
-<style>
+<style scoped>
+img{
+  width: 30px;
+}
 </style>

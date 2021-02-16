@@ -8,7 +8,6 @@
 <script>
 import ReviewList from '../cmps/ReviewList'
 import AddReview from '../cmps/AddReview'
-// import { component } from 'vue/types/umd'
 export default {
     name:'reviews',
     props:['bookReviews'],

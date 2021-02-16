@@ -1,46 +1,23 @@
 <template>
-  <section class="add-book-container main-container">
-    <input
-      list="books"
-      type="text"
-      placeholder="Enter book name"
-      v-model="bookName"
-      @input="getRelevantBooks"
-      ref="input"
-    />
-    <!-- <div v-for="book in relevantBooks" :key="book.title" >
-        <h1>2222</h1>
-    </div> -->
-    <!-- <datalist for="books"> -->
-    <div
-      v-for="(book, idx) in relevantBooks"
-      :key="idx"
-      :v-if="relevantBooks"
-      class="book-option flex align-center space-around"
-    >
-      <h2>{{ book.title }}</h2>
-      <img :src="book.thumbnail" v-if="book" />
-      <button @click="addBook(book)">+</button>
+  <section class="add-book-container main-container column-layout">
+    <div class="new-book-nav full">
+      <div><router-link to="/addBook">Add Book| </router-link></div>
+      <div>
+        <router-link to="/addBook/google-books">Search Books </router-link>
+      </div>
     </div>
-    <!-- </datalist> -->
+    <router-view></router-view>
   </section>
 </template>
 
 <script>
-import { googleBookService } from '../services/googleBooksService';
+import NewEditBook from '../cmps/NewEditBook';
+import { mixins } from '../services/mixins';
+
 export default {
   name: 'AddBook',
-  data() {
-    return {
-      bookName: '',
-      relevantBooks: null,
-    };
-  },
-  async created() {
-    // console.log('expirement, ', await googleBookService.getArrangedBooks() )
-  },
-  mounted() {
-    this.focusInput();
+  created() {
+    mixins.scrollToTop();
   },
   methods: {
     async getRelevantBooks() {
@@ -51,8 +28,8 @@ export default {
         }
         const books = await googleBookService.getArrangedBooks(this.bookName);
         this.relevantBooks = books;
-      } catch {
-        console.log('aaaa');
+      } catch (err) {
+        console.log('error, ', err);
       }
     },
     async addBook(book) {
@@ -60,27 +37,22 @@ export default {
         const newBook = await this.$store.dispatch({ type: 'saveBook', book });
         console.log('newBook, ', newBook);
         this.$store.dispatch({
-          type: 'setReviewDeletedSuccess',
+          type: 'setReviewAddedSuccess',
           msgData: {
             msg: 'Book added succssfully!',
             type: 'success',
             bookId: newBook.id,
           },
         });
-      } catch {}
-    },
-    focusInput() {
-      this.$refs.input.focus();
+        this.$router.push('/');
+      } catch (err) {
+        console.log('error in msg! ', err);
+      }
     },
   },
-  computed: {
-    // async booksToAdd() {
-    //   if (this.bookName) {
-    //     const relevantBooks = await googleBookService.getArrangedBooks(this.bookName);
-    //     console.log(relevantBooks);
-    //     return relevantBooks;
-    //   } else return false;
-    // },
+
+  components: {
+    NewEditBook,
   },
 };
 </script> 

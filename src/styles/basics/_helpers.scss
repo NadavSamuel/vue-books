@@ -41,8 +41,14 @@
 .space-around {
     justify-content: space-around;
 }
+.space-evenly {
+    justify-content: space-evenly;
+}
 .space-between {
     justify-content: space-between;
+}
+.inline-flex {
+    display: inline-flex;
 }
 // .column {
 //     flex-direction: column;
@@ -74,6 +80,9 @@ padding:60px
 }
 .text-center {
     text-align: center;
+}
+.full-width{
+    width: 100%;
 }
 
 .clean-list {

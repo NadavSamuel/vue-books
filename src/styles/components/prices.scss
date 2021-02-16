@@ -1,0 +1,11 @@
+.special-price{
+    border-radius: 15px;
+    padding: 3px 10px;
+    color: white;
+    &.expensive {
+        background: red;
+    }
+    &.cheap{
+        background: #83d0e9;
+    }
+}

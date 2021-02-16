@@ -1,5 +1,5 @@
 <template >
-    <ul v-if="reviews[0]" class="review-list clean-list review-grid ">
+    <ul v-if="reviews[0]" class="review-list clean-list  ">
       <h1> Reviews for this book</h1>
         <book-review @onDeleteReview ="onDeleteReview" v-for="currReview in reviews" :key="currReview.id" :review="currReview" />
     </ul>

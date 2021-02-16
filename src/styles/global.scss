@@ -9,17 +9,26 @@
 @import "basics/_helpers.scss";
 @import "basics/_layout.scss";
 @import "basics/_base.scss";
-@import "basics/_links.scss";
 @import "basics/_buttons.scss";
 @import "basics/ribbon.scss";
 
 // Components
 @import "components/MainApp.scss";
 @import "components/user-msg";
-@import "components/edit-modal.scss";
 @import "components/color-picker.scss";
-// @import "components/forcast-cards"
+@import "components/book-preview.scss";
+@import "components/filters.scss";
+@import "components/noBooksMsg.scss";
+@import "components/navbar.scss";
+@import "components/black-screen.scss";
+@import "components/loader.scss";
+@import "components/prices.scss";
+@import "components/footer.scss";
 
 // Views
 @import "views/book-details.scss";
+@import "views/main-page.scss";
 @import "views/book-add.scss";
+@import "views/login-signup.scss";
+@import "views/user-profile.scss";
+@import "views/about.scss";

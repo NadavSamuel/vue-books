@@ -1,12 +1,15 @@
 // Colors
-$clr1: #ce2e6c;
-$clr2: #4f3a65;
-$clr3: #574f7d;
-$clr4: #95adbe;
+$clr1: #28df99;
+$clr2: #99f3bd;
+$clr3: #d2f6c5;
+$clr4: #f6f7d4;
 $clr5: #dff0ea;
 $clr6: #fff;
+$faliure-clr: rgb(235, 123, 123);;
 
 // Breakpoints
 $mobile-breakpoint: 460px;
 $narrow-breakpoint: 720px;
-$normal-breakpoint: 960px;
+$normal-breakpoint: 1030px;
+
+$thumbnail-border-radius:15px

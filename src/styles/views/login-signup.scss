@@ -1,0 +1,50 @@
+.user-profile {
+    .signup,
+    .login {
+        min-height: 75vh;
+        form {
+            .form-group {
+                display: flex;
+                width: 100%;
+                flex-direction: column;
+                align-items: start;
+                input {
+                    width: 100%;
+                    height: 40px;
+                    font-size: 1.3rem;
+                    transition: 0.3s;
+                }
+                > * {
+                    margin: 5px 0;
+                }
+                .invalid-feedback {
+                    color: $faliure-clr;
+                }
+                .is-invalid {
+                    color: white;
+                    border-color: $faliure-clr;
+                    background-color: rgb(247, 88, 88);
+                }
+            }
+            button {
+                align-self: flex-start;
+                border-radius: 5px;
+                font-size: 1.3rem;
+                background-color: $clr3;
+                transition: 0.3s;
+                &:hover {
+                    background-color: $clr4;
+                }
+            }
+        }
+        .auth-routing-btn {
+            margin-top: 10px;
+            background-color: $clr1;
+            width: 100%;
+            text-decoration: none;
+            span {
+                color: white;
+            }
+        }
+    }
+}

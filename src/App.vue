@@ -1,51 +1,48 @@
 <template>
   <div id="app">
     <user-msg />
-    <div id="nav" class="flex align-center justify-between space-between">
-      <h2><router-link to="/">Books 'R' Us</router-link></h2>
-      <div class="flex">
-        <div><router-link to="/addBook">Add Book| </router-link></div>
-        <div><router-link to="/userProfile">User Profile| </router-link></div>
-        <div><router-link to="/about">About</router-link></div>
-      </div>
-    </div>
-    <router-view />
+    <loader v-if="this.$store.state.usrMsgModule.isLoader" />
+    <navbar />
+    <transition name="fade" mode="out-in">
+      <router-view />
+    </transition>
+    <footer-cmp />
   </div>
 </template>
 <script>
 import UserMsg from '@/cmps/UserMsg';
+import Navbar from '@/cmps/Navbar';
+import Loader from '@/cmps/Loader';
+import FooterCmp from '@/cmps/FooterCmp';
+import 'vue2-animate/dist/vue2-animate.min.css';
 
 export default {
+  data() {
+    return {
+      isLoader: this.$store.state.usrMsgModule.isLoader,
+    };
+  },
+  async created() {
+    this.$store.dispatch({ type: 'toggleLoaderOn' });
+    this.loadBooks();
+    await this.getLoggedInUserData();
+    this.$store.dispatch({ type: 'toggleLoaderOff' });
+  },
+
+  methods: {
+    loadBooks() {
+      this.$store.dispatch({ type: 'loadBooks' });
+    },
+    getLoggedInUserData() {
+      if (this.$store.state.userProfile.currUser)
+        this.$store.dispatch({ type: 'getUserWhishlist' });
+    },
+  },
   components: {
-    // AppHeader,
-    // AppFooter,
     UserMsg,
+    Loader,
+    Navbar,
+    FooterCmp,
   },
 };
 </script>
-
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  height: 10vh;
-  background: #ffffff99;
-  padding: 0 25px;
-  margin-bottom: 100px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #097f4a;
-    }
-  }
-}
-</style>

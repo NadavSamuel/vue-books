@@ -16,15 +16,14 @@ export const googleBookService = {
 async function getArrangedBooks(bookName){
     const books = await getBooksFromGoogle(bookName)
     const arrangedBooks = books.map(book =>{
-        return{
+        const arrangedBook = {
             title:book.volumeInfo.title,
             subtitle:book.volumeInfo.subtitle,
-            authors:[...book.volumeInfo.authors],
+            authors:book.volumeInfo.authors,
             publishedDate:book.volumeInfo.publishedDate,
             pageCount:book.volumeInfo.pageCount,
             categories:book.volumeInfo.categories,
             reviews:[],
-            thumbnail:book.volumeInfo.imageLinks.thumbnail || '',
             language:book.volumeInfo.language,
             listPrice:{
                 amount:55,
@@ -32,6 +31,9 @@ async function getArrangedBooks(bookName){
                 isOnSale:true
             }
         }
+        if(book.volumeInfo.imageLinks) arrangedBook.thumbnail = book.volumeInfo.imageLinks.thumbnail;
+        else arrangedBook.thumbnail = 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Open_book_nae_02.svg/1200px-Open_book_nae_02.svg.png'
+        return arrangedBook
     })
     return arrangedBooks
 }
