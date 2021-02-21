@@ -1,7 +1,7 @@
 <template>
 <section class="book-details">
   <div v-if="book && isWhishlistExist" class=" main-container">
-    <h1 class="p30">{{ book.title }}</h1>
+    <h1 class="p50 rem2">{{ book.title }}</h1>
     <article class="details column-layout">
       <div class="book-details-main flex full-width">
         <div class="img-social-wapper">
@@ -305,9 +305,3 @@ export default {
   components: {LongText, BookImg, Reviews,Stars,Heart,SocialShareBtns,BookPrice},
 };
 </script>
-<style scoped>
-.img-wrapper {
-  position: relative;
-}
-</style>
-

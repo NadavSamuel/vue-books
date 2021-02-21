@@ -1,9 +1,9 @@
 <template>
   <section class="category-container main-container">
-    <h1>{{ category }}</h1>
+    <h1 class="p50 rem2">{{ category }}</h1>
     <book-filter @filtered="onSetFilter" />
     <book-list v-if="books" :books="booksToShow" /> 
-        <no-books v-if=" !books||!books.length" />
+        <no-books v-if="!booksToShow||!booksToShow.length ||!books " />
   </section>
 </template>
 
@@ -47,12 +47,24 @@ export default {
   },
   methods: {
     async loadCategoryBooks() {
-      const categoryToShow =  this.category === 'All Books' ? '' : this.category;
-      await this.$store.dispatch({
-        type: 'loadBooks',
-        filterBy: { category: categoryToShow },
-      });
-      this.books = this.$store.getters.booksToShow;
+      try{
+        const category =  this.category === 'All Books' ? '' : this.category;
+        await this.$store.dispatch({
+          type: 'loadBooks',
+          filterBy: { category },
+        });
+        this.books = this.$store.getters.booksToShow;
+      }
+      catch(err){
+        console.log('Could not load books,',err)
+                this.$store.dispatch({
+          type: 'setReviewAddedSuccess',
+          msgData: {
+            msg: 'Sorry, could not load proper books',
+            type: 'faliure',
+          },
+        });
+      }
     },
     onSetFilter(filterBy) {
       this.$store.dispatch({ type: 'toggleLoaderOn' });
