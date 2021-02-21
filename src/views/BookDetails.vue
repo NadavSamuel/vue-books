@@ -82,8 +82,8 @@ export default {
   },
   async created() {
     this.$store.dispatch({ type: 'toggleLoaderOn' });
-    await this.loadBook();
     mixins.scrollToTop();
+    await this.loadBook();
     if(this.book.byUserId) await this.getBookSeller();
     this.determinLikedBook();
     this.$store.dispatch({ type: 'toggleLoaderOff' });

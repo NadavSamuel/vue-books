@@ -6,11 +6,13 @@
     background-color: white;
     z-index: 999;
     width: 35%;
+    color:white;
+    font-size: 1.5rem;
+
 }
 .success{
     background: $clr1;
 }
 .faliure{
     background: $faliure-clr;
-    color:white;
 }
